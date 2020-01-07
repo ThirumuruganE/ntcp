@@ -13,8 +13,7 @@ PrettyTable version 3.1.2 https://pypi.org/project/PrettyTable/
 xlrd version 1.2.0 https://pypi.org/project/xlrd/
 
 # How to Use
-1) Differential DVH values are obtained in the for of csv and the region of interest dose and volume are saved in a
-seperate spread sheet and save it in .xls format
+1) Differential DVH values are obtained in the for of csv and copy the region of interests dose and volume values and save it in a seperate spread sheet in .xls format
 2) The dose and volume columns are given title as dose and volume. every character should be in lower case.
 3) a sample speadsheet is attached for reference
 4) 
