@@ -28,4 +28,7 @@ in case tkinter is not installed. install tkinter
 
 #### In Ubuntu this program just runs with double click
 run the code <sudo chmod u+x ntcp.py> from the directory in which the python file is placed to double click and run the program.
+and also change the preference as seen below in file manager
+
+
 #### In case of other OS run the program from terminal.
