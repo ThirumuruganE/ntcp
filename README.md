@@ -26,6 +26,6 @@ in case tkinter is not installed. install tkinter
 7. again click manual input button.
 8. click calculate.
 
-
-
-
+#### In Ubuntu this program just runs with double click
+run the code <sudo chmod u+x ntcp.py> from the directory in which the python file is placed to double click and run the program.
+#### In case of other OS run the program from terminal.
