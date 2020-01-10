@@ -14,6 +14,14 @@ xlrd version 1.2.0 https://pypi.org/project/xlrd/ \
 in case tkinter is not installed. install tkinter
 
 ## How to Use
+
+#### In Ubuntu this program just runs with double click
+run the code <sudo chmod u+x ntcp.py> from the directory in which the python file is placed to double click and run the program.
+and also change the preference as seen below in file manager
+![readme1](https://user-images.githubusercontent.com/26036836/72175217-a10fcb80-3401-11ea-93a5-133efdac63db.png)
+
+
+#### In case of other OS run the program from terminal.
 1. Take the region of interest(e.g.optic chiasm) "Differential DVH" values i.e. volume and dose in .xls format. The name of column should be in lower case as shown below.(volume and dose)
 
 ![readme](https://user-images.githubusercontent.com/26036836/72164318-79ae0400-33eb-11ea-9239-f1817b7794f4.png)
@@ -26,9 +34,4 @@ in case tkinter is not installed. install tkinter
 7. again click manual input button.
 8. click calculate.
 
-#### In Ubuntu this program just runs with double click
-run the code <sudo chmod u+x ntcp.py> from the directory in which the python file is placed to double click and run the program.
-and also change the preference as seen below in file manager
 
-
-#### In case of other OS run the program from terminal.
