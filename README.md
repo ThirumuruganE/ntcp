@@ -14,8 +14,18 @@ xlrd version 1.2.0 https://pypi.org/project/xlrd/ \
 in case tkinter is not installed. install tkinter
 
 ## How to Use
-1. Take the region of interest DVH values i.e. volume and dose in .xls format. The name of column should be in lower case as shown below.
+1. Take the region of interest DVH values i.e. volume and dose in .xls format. The name of column should be in lower case as shown below.(volume and dose)
 
 ![readme](https://user-images.githubusercontent.com/26036836/72164318-79ae0400-33eb-11ea-9239-f1817b7794f4.png)
+
+2. Import the .xls file.
+3. Select parameters from menu either emami et al, or Gay and niemierko.
+4. click calculate
+5. In case of manual calculation enter all the parameters and click manual input button
+6. before next manual. click clear button and enter the parameters from first.
+7. again click manual input button.
+8. click calculate.
+
+
 
 
