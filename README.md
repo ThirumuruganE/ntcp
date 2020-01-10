@@ -14,7 +14,10 @@ xlrd version 1.2.0 https://pypi.org/project/xlrd/
 in case tkinter is not installed. install tkinter
 
 # How to Use
-1) Differential DVH values are obtained in the form of csv and copy the region of interests dose and volume values and save it in a seperate spread sheet in .xls format
+1)export Differential DVH in csv format from TPS.
+2) save thr volume and dose for region of interest in .xls format
+3) like the below picture
+![excel](/home/thirumurugan/Pictures/readme.png)
 2) The dose and volume columns are given title as dose and volume. every character should be in lower case.
 3) a sample speadsheet is attached for reference
 4)
