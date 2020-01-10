@@ -16,5 +16,6 @@ in case tkinter is not installed. install tkinter
 ## How to Use
 1. Take the region of interest DVH values i.e. volume and dose in .xls format. The name of column should be in lower case as shown below.
 
+![readme](https://user-images.githubusercontent.com/26036836/72164318-79ae0400-33eb-11ea-9239-f1817b7794f4.png)
 
 
