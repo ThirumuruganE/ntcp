@@ -43,7 +43,7 @@ readme1 = '''
 4.Click calculate
 
 5.In case of manual calculation enter all the parameters and click manual value 
-entry button.
+entry button and click calculate.
 
 6.Before next manual entry.click clear button and enter the parameters from 
 first.
