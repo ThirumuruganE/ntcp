@@ -7,6 +7,113 @@ from tkinter import filedialog
 
 root = Tk()
 root.title("EUD based NTCP calculator")
+top_frame = Frame(root, borderwidth=3, width=454)
+top_frame.pack(side=TOP)
+bot_frame = Frame(root, borderwidth=3)
+bot_frame.pack(side=BOTTOM)
+
+scroll = Scrollbar(top_frame)
+tex2 = Text(top_frame, height=30, width=80)
+scroll.pack(side=RIGHT, fill=Y)
+tex2.pack(side=LEFT, fill=Y)
+scroll.config(command=tex2.yview)
+tex2.config(yscrollcommand=scroll.set)
+img = PhotoImage(file="icon.gif")
+tex2.image_create(END, image=img)
+readme = '''
+
+<EUD based NTCP Calculator>
+
+# HOW TO USE\n
+1.Take the region of interest(e.g.optic chiasm) "Differential DVH" values
+i.e. volume and dose in .xls format.The name of column should be in lower 
+case as shown below.(volume and dose)
+
+
+'''
+tex2.insert(END, readme)
+img1 = PhotoImage(file="readme.png")
+tex2.image_create(END, image=img1)
+readme1 = '''
+
+2.Import the .xls file.
+
+3.Select parameters from menu either emami et al, or Gay and niemierko.
+
+4.Click calculate
+
+5.In case of manual calculation enter all the parameters and click manual value 
+entry button.
+
+6.Before next manual entry.click clear button and enter the parameters from 
+first.
+
+7.Again click manual input button.
+
+8.click calculate.
+'''
+tex2.insert(END, readme1)
+
+ent = '''
+# REFERENCES
+
+Gay and Niemierko                                                               '''
+tex2.insert(END, ent)
+from prettytable import PrettyTable
+
+xy = PrettyTable()
+xy.field_names = ['NTCP', 'fx', 'alpha/beta', 'dose/fx', 'a', 'gamma50', 'TD50']
+xy.add_row(['Brain', 30, 2.9, 2, 5, 3, 60])
+xy.add_row(['Brainstem', 30, 2.5, 2, 7, 3, 65])
+xy.add_row(['Heart', 30, 2.5, 2, 3, 3, 50])
+xy.add_row(['Kidney', 30, 2, 2, 1, 3, 28])
+xy.add_row(['Liver', 30, 2.5, 2, 3, 3, 40])
+xy.add_row(['Lung', 30, 4, 2, 1, 2, 24.5])
+xy.add_row(['Oesophagus', 30, 10, 2, 19, 4, 68])
+xy.add_row(['Optic Chiasm', 30, 2, 2, 25, 3, 65])
+xy.add_row(['Optic Nerve', 30, 1.6, 2, 25, 3, 65])
+xy.add_row(['Parotids', 30, 3, 2, 1, 2, 31.4])
+tex2.insert(END, xy)
+emami = '''
+
+In emami data while calculating BED the dose per fraction is 
+considered as 1.8-2 Gy, 5 days a week                                           '''
+tex2.insert(END, emami)
+yx = PrettyTable()
+yx.field_names = ['Structure', 'End point', 'a', 'gamma50', 'TD50']
+yx.add_row(['Brain', 'Necrosis', 5, 3, 60])
+yx.add_row(['Brainstem', 'Necrosis', 7, 3, 65])
+yx.add_row(['Optic chiasm', 'Blindness', 25, 3, 65])
+yx.add_row(['Colon', 'Obstruction', 6, 4, 55])
+yx.add_row(['Ear', 'Acute serous otitis', 31, 3, 40])
+yx.add_row(['Ear', 'Chronic serous otitis', 31, 4, 65])
+yx.add_row(['Esophagus', 'Perforation', 19, 4, 68])
+yx.add_row(['Heart', 'Pericarditis', 3, 3, 50])
+yx.add_row(['Kidney', 'Nephritis', 1, 3, 28])
+yx.add_row(['Lens', 'Cataract', 3, 1, 18])
+yx.add_row(['Liver', 'Liver failure', 3, 3, 40])
+yx.add_row(["Lung", 'Pneumonitis', 1, 2, 24.5])
+yx.add_row(['Optic nerve', 'Blindness', 25, 3, 65])
+yx.add_row(['Retina', 'Blindness', 15, 2, 65])
+tex2.insert(END, yx)
+
+ref = '''
+
+# REFERENCES
+
+1.RADBIOMOD: A simple program for utilising biological modelling in 
+radiotherapy plan evaluation Chang, Joe H. et al. Physica Medica: 
+European Journal of Medical Physics, Volume 32, Issue 1, 248 - 254
+
+2.Wu, Q., Mohan, R., Niemierko, A., & Schmidt-Ullrich, R. (2002). 
+Optimization of intensity-modulated radiotherapy plans based on 
+the equivalent uniform dose. International Journal of Radiation 
+Oncology* Biology* Physics, 52(1), 224-235.
+
+3.Gay, H. A., & Niemierko, A. (2007). A free program for calculating 
+EUD-based NTCP and TCP in external beam radiotherapy. Physica Medica,
+23(3-4), 115-125.'''
+tex2.insert(END, ref)
 
 
 # defining manual entry
@@ -325,7 +432,9 @@ def calculate_eud():
     ntcp = ntcp ** g
     ntcp = 1.0 + ntcp
     ntcp = (1.0 / ntcp) * 100
-    showinfo('Normal tissue complication probability (percentage)', 'NTCP Percentage %s\nEUD is %s Gy' % (ntcp, q))
+    showinfo('Normal tissue complication probability (percentage)',
+             'NTCP Percentage {:.2f}\nEUD is {:.2f} Gy'.format(ntcp, q))
+
 
 
 # display reference
@@ -405,35 +514,49 @@ def open2():
     tex1.insert(END, lic)
 
 
+def helping():
+    new_wind = Toplevel(root)
+    new_wind.title("help/contact")
+    tex3 = Text(new_wind, height=10, width=50)
+    tex3.pack()
+    contact = '''
+    Author: Thirumurugan Elango
+    Masters Student,
+    Department of Medical Physics,
+    Anna University
+    email: thiru20@protonmail.com'''
+    tex3.insert(END, contact)
+
+
 # Entry widgets for manual inputs
-abi = Entry(root, width=25, borderwidth=5)
+abi = Entry(bot_frame, width=25, borderwidth=5)
 abi.grid(row=0, column=1)
-gp = Entry(root, width=25, borderwidth=5)
+gp = Entry(bot_frame, width=25, borderwidth=5)
 gp.grid(row=0, column=3)
-tdf = Entry(root, width=25, borderwidth=5)
+tdf = Entry(bot_frame, width=25, borderwidth=5)
 tdf.grid(row=1, column=1)
-no = Entry(root, width=25, borderwidth=5)
+no = Entry(bot_frame, width=25, borderwidth=5)
 no.grid(row=1, column=3)
-dosep = Entry(root, width=25, borderwidth=5)
+dosep = Entry(bot_frame, width=25, borderwidth=5)
 dosep.grid(row=2, column=1)
-alpha = Entry(root, width=25, borderwidth=5)
+alpha = Entry(bot_frame, width=25, borderwidth=5)
 alpha.grid(row=2, column=3)
 
 # Create Buttons
-btn_1 = Button(root, text="import", command=file_name).grid(row=5, column=0)
-btn_2 = Button(root, text="calculate", command=calculate_eud).grid(row=5, column=1)
-btn_3 = Button(root, text="manual value entry",
+btn_1 = Button(bot_frame, text="import", command=file_name).grid(row=5, column=0)
+btn_2 = Button(bot_frame, text="calculate", command=calculate_eud).grid(row=5, column=1)
+btn_3 = Button(bot_frame, text="manual value entry",
                command=lambda: [ab_value(), g_value(), td_value(), s_value(), doseperfraction(), nofraction(),
                                 a_value()])
 btn_3.grid(row=5, column=3)
-btn_4 = Button(root, text="Clear", command=clear).grid(row=5, column=2)
+btn_4 = Button(bot_frame, text="Clear", command=clear).grid(row=5, column=2)
 # create Label for manual entry
-l1 = Label(root, text="a value").grid(row=0, column=0)
-l2 = Label(root, text="Gamma 50 value").grid(row=0, column=2)
-l3 = Label(root, text='Tolerance Dose in Gy').grid(row=1, column=0)
-l4 = Label(root, text="Number of Fractions").grid(row=1, column=2)
-l5 = Label(root, text="Dose per faction in Gy").grid(row=2, column=0)
-l6 = Label(root, text="Alpha/Beta Value").grid(row=2, column=2)
+l1 = Label(bot_frame, text="a value").grid(row=0, column=0)
+l2 = Label(bot_frame, text="Gamma 50 value").grid(row=0, column=2)
+l3 = Label(bot_frame, text='Tolerance Dose in Gy').grid(row=1, column=0)
+l4 = Label(bot_frame, text="Number of Fractions").grid(row=1, column=2)
+l5 = Label(bot_frame, text="Dose per faction in Gy").grid(row=2, column=0)
+l6 = Label(bot_frame, text="Alpha/Beta Value").grid(row=2, column=2)
 # create menubar
 menubar = Menu(root)
 root.config(menu=menubar)
@@ -475,7 +598,7 @@ rmenu.add_command(label='Reference value', command=open1)
 
 amenu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label='About', menu=amenu)
-amenu.add_command(label='about', command=open2)
+amenu.add_command(label='License', command=open2)
+amenu.add_command(label="contact/help",command=helping)
 
 root.mainloop()
-
