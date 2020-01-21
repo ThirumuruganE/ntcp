@@ -30,6 +30,8 @@ and also change the preference as seen below in file manager
 
 ![readme](https://user-images.githubusercontent.com/26036836/72164318-79ae0400-33eb-11ea-9239-f1817b7794f4.png)
 
+#### Example spread sheet is added in the repository in the name testing.xls for reference
+
 2. Import the .xls file.
 3. Select parameters from menu either emami et al, or Gay and niemierko.
 4. click calculate
